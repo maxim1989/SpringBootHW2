@@ -35,4 +35,8 @@ public class FacultyService {
     public List<Faculty> filterByColor(String color) {
         return facultyRepository.findByColor(color);
     }
+
+    public List<Faculty> filterByName(String name) {
+        return facultyRepository.findByName(name);
+    }
 }

@@ -49,7 +49,17 @@ public class StudentController {
     }
 
     @GetMapping("filter")
-    public ResponseEntity<List<Student>> filter(@RequestParam int age) {
-        return ResponseEntity.ok(studentService.filterByAge(age));
+    public ResponseEntity<List<Student>> filter(
+            @RequestParam(required = false) Integer age,
+            @RequestParam(required = false) Integer min,
+            @RequestParam(required = false) Integer max
+    ) {
+        if (age != null & min == null & max == null) {
+            return ResponseEntity.ok(studentService.filterByAge(age));
+        } else if (age == null & min != null & max != null) {
+            return ResponseEntity.ok(studentService.filterByAgeRange(min, max));
+        }
+
+        return ResponseEntity.notFound().build();
     }
 }

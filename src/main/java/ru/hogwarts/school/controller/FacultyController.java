@@ -46,7 +46,16 @@ public class FacultyController {
     }
 
     @GetMapping("filter")
-    public ResponseEntity<List<Faculty>> filter(@RequestParam String color) {
-        return ResponseEntity.ok(facultyService.filterByColor(color));
+    public ResponseEntity<List<Faculty>> filter(
+            @RequestParam(required = false) String color,
+            @RequestParam(required = false) String name
+    ) {
+        if (color != null & name == null) {
+            return ResponseEntity.ok(facultyService.filterByColor(color));
+        } else if (color == null & name != null) {
+            return ResponseEntity.ok(facultyService.filterByName(name));
+        }
+
+        return ResponseEntity.notFound().build();
     }
 }
