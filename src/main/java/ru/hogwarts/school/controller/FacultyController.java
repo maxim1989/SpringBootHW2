@@ -6,7 +6,6 @@ import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.service.FacultyService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("faculty")
@@ -24,13 +23,8 @@ public class FacultyController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Optional<Faculty>> getFaculty(@PathVariable Long id) {
-        Optional<Faculty> faculty = facultyService.read(id);
-
-        if (faculty.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
+    public ResponseEntity<Faculty> getFaculty(@PathVariable Long id) {
+        Faculty faculty = facultyService.read(id);
         return ResponseEntity.ok(faculty);
     }
 

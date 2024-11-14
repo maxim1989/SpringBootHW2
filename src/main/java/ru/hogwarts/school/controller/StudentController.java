@@ -24,12 +24,8 @@ public class StudentController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Optional<Student>> getStudent(@PathVariable Long id) {
-        Optional<Student> student = studentService.read(id);
-
-        if (student.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Student> getStudent(@PathVariable Long id) {
+        Student student = studentService.read(id);
 
         return ResponseEntity.ok(student);
     }
