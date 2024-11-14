@@ -6,6 +6,7 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.StudentService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController()
 @RequestMapping("student")
@@ -26,10 +27,6 @@ public class StudentController {
     public ResponseEntity<Student> getStudent(@PathVariable Long id) {
         Student student = studentService.read(id);
 
-        if (student == null) {
-            return ResponseEntity.notFound().build();
-        }
-
         return ResponseEntity.ok(student);
     }
 
@@ -45,14 +42,10 @@ public class StudentController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Student> deleteStudent(@PathVariable Long id) {
-        Student response = studentService.delete(id);
+    public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
+        studentService.delete(id);
 
-        if (response == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("filter")
