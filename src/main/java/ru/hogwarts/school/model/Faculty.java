@@ -21,7 +21,7 @@ public class Faculty {
         this.color = color;
         this.name = name;
     }
-    @JsonIgnore
+
     @OneToMany(mappedBy = "faculty")
     private List<Student> students;
 
