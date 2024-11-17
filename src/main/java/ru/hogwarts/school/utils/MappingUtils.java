@@ -1,11 +1,11 @@
 package ru.hogwarts.school.utils;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import ru.hogwarts.school.dto.*;
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
 
-@Service
+@Component
 public class MappingUtils {
     public FacultyDto mapToFacultyDto(Faculty entity){
         FacultyDto dto = new FacultyDto();
