@@ -43,7 +43,7 @@ public class MappingUtils {
         dto.setId(entity.getId());
         dto.setName(entity.getName());
         dto.setAge(entity.getAge());
-        dto.setFaculty(entity.getFaculty());
+        dto.setFaculty(mapToFacultyDto(entity.getFaculty()));
         return dto;
     }
 

@@ -6,7 +6,7 @@ public class StudentFacultyDto {
     private Long id;
     private String name;
     private int age;
-    private Faculty faculty;
+    private FacultyDto faculty;
 
     public Long getId() {
         return id;
@@ -32,11 +32,11 @@ public class StudentFacultyDto {
         this.age = age;
     }
 
-    public Faculty getFaculty() {
+    public FacultyDto getFaculty() {
         return faculty;
     }
 
-    public void setFaculty(Faculty faculty) {
+    public void setFaculty(FacultyDto faculty) {
         this.faculty = faculty;
     }
 }

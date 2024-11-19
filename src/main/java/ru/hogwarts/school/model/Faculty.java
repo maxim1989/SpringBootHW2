@@ -22,7 +22,7 @@ public class Faculty {
         this.name = name;
     }
 
-    @JsonIgnore
+//    @JsonIgnore
     @OneToMany(mappedBy = "faculty")
     private List<Student> students;
 
