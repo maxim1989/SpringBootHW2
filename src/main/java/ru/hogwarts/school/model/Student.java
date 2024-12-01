@@ -50,4 +50,8 @@ public class Student {
     public Faculty getFaculty() {
         return faculty;
     }
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
+    }
 }
