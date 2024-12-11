@@ -8,6 +8,9 @@ import ru.hogwarts.school.dto.StudentDto;
 import ru.hogwarts.school.dto.StudentFacultyDto;
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
+import ru.hogwarts.school.repository.LastFiveStudents;
+import ru.hogwarts.school.repository.StudentsAmount;
+import ru.hogwarts.school.repository.StudentsAvgAge;
 import ru.hogwarts.school.service.StudentService;
 
 import java.util.List;
@@ -60,5 +63,20 @@ public class StudentController {
     @GetMapping("{id}/faculty")
     public ResponseEntity<FacultyDto> getStudentFaculty(@PathVariable Long id) {
         return ResponseEntity.ok(studentService.getStudentFaculty(id));
+    }
+
+    @GetMapping("amount")
+    public ResponseEntity<StudentsAmount> getStudentAmount() {
+        return ResponseEntity.ok(studentService.getStudentAmount());
+    }
+
+    @GetMapping("avg-age")
+    public ResponseEntity<StudentsAvgAge> getStudentAvgAge() {
+        return ResponseEntity.ok(studentService.getStudentAvgAge());
+    }
+
+    @GetMapping("last-five-students")
+    public ResponseEntity<List<LastFiveStudents>> getLastFiveStudents() {
+        return ResponseEntity.ok(studentService.getLastFiveStudents());
     }
 }
