@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.school.dto.FacultyCreateDto;
 import ru.hogwarts.school.dto.FacultyDto;
 import ru.hogwarts.school.dto.StudentFacultyDto;
+import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.service.FacultyService;
 
 import java.util.List;
@@ -56,5 +57,11 @@ public class FacultyController {
     @GetMapping("{id}/students")
     public ResponseEntity<List<StudentFacultyDto>> getStudentsByFaculty(@PathVariable Long id) {
         return ResponseEntity.ok(facultyService.getStudentsByFaculty(id));
+    }
+
+    @GetMapping("pagination")
+    public ResponseEntity<List<FacultyDto>> getFacultyPagination(@RequestParam() Integer limit,
+                                                              @RequestParam() Integer offset) {
+        return ResponseEntity.ok(facultyService.getFacultyPagination(limit, offset));
     }
 }
