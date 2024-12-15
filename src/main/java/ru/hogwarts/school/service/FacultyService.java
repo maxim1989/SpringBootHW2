@@ -1,5 +1,6 @@
 package ru.hogwarts.school.service;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.dto.FacultyCreateDto;
 import ru.hogwarts.school.dto.FacultyDto;
@@ -74,5 +75,16 @@ public class FacultyService {
             studentFacultyDto.add(mappingUtils.mapToStudentFacultyDto(faculty));
         }
         return studentFacultyDto;
+    }
+
+    public List<FacultyDto> getFacultyPagination(Integer limit, Integer offset) {
+        PageRequest pageRequest = PageRequest.of(offset - 1, limit);
+        List<Faculty> facultyList = facultyRepository.findAll(pageRequest).getContent();
+        List<FacultyDto> facultyDtoList = new ArrayList<>();
+        for (final Faculty faculty : facultyList) {
+            facultyDtoList.add(mappingUtils.mapToFacultyDto(faculty));
+        }
+
+        return facultyDtoList;
     }
 }

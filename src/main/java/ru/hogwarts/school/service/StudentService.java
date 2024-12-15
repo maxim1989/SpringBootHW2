@@ -8,7 +8,10 @@ import ru.hogwarts.school.dto.StudentFacultyDto;
 import ru.hogwarts.school.exception.NotFoundException;
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
+import ru.hogwarts.school.repository.LastFiveStudents;
 import ru.hogwarts.school.repository.StudentRepository;
+import ru.hogwarts.school.repository.StudentsAmount;
+import ru.hogwarts.school.repository.StudentsAvgAge;
 import ru.hogwarts.school.utils.MappingUtils;
 
 import java.util.*;
@@ -69,5 +72,17 @@ public class StudentService {
                 .orElseThrow(NotFoundException::new)
                 .getFaculty();
         return mappingUtils.mapToFacultyDto(faculty);
+    }
+
+    public StudentsAmount getStudentAmount() {
+        return studentRepository.getStudentAmount();
+    }
+
+    public StudentsAvgAge getStudentAvgAge() {
+        return studentRepository.getStudentAvgAge();
+    }
+
+    public List<LastFiveStudents> getLastFiveStudents() {
+        return studentRepository.getLastFiveStudents();
     }
 }
