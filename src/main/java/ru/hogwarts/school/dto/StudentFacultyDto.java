@@ -1,7 +1,5 @@
 package ru.hogwarts.school.dto;
 
-import ru.hogwarts.school.model.Faculty;
-
 public class StudentFacultyDto {
     private Long id;
     private String name;
