@@ -21,7 +21,7 @@ import java.util.*;
 public class StudentService {
     final StudentRepository studentRepository;
     final MappingUtils mappingUtils;
-    private final Logger logger = LoggerFactory.getLogger(StudentService.class);
+    private static final Logger logger = LoggerFactory.getLogger(StudentService.class);
 
     public StudentService(StudentRepository studentRepository, MappingUtils mappingUtils) {
         this.studentRepository = studentRepository;

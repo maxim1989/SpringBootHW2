@@ -19,7 +19,7 @@ import java.util.*;
 public class FacultyService {
     final FacultyRepository facultyRepository;
     final MappingUtils mappingUtils;
-    private final Logger logger = LoggerFactory.getLogger(FacultyService.class);
+    private static final Logger logger = LoggerFactory.getLogger(FacultyService.class);
 
     public FacultyService(FacultyRepository facultyRepository, MappingUtils mappingUtils) {
         this.facultyRepository = facultyRepository;
