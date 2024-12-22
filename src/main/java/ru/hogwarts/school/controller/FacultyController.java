@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.school.dto.FacultyCreateDto;
 import ru.hogwarts.school.dto.FacultyDto;
 import ru.hogwarts.school.dto.StudentFacultyDto;
-import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.service.FacultyService;
 
 import java.util.List;
