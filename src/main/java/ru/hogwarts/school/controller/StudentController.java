@@ -76,4 +76,9 @@ public class StudentController {
     public ResponseEntity<List<LastFiveStudents>> getLastFiveStudents() {
         return ResponseEntity.ok(studentService.getLastFiveStudents());
     }
+
+    @GetMapping("start-with-a")
+    public ResponseEntity<List<String>> getStartWithAStudents() {
+        return ResponseEntity.ok(studentService.getStartWithAStudents());
+    }
 }

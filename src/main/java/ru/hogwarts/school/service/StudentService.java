@@ -96,4 +96,16 @@ public class StudentService {
         logger.info("StudentService getLastFiveStudents was invoked");
         return studentRepository.getLastFiveStudents();
     }
+
+    public List<String> getStartWithAStudents() {
+        return studentRepository
+                .findAll()
+                .stream()
+                .filter(
+                        student -> student.getName().toUpperCase().startsWith("A")
+                )
+                .map(student -> student.getName().toUpperCase())
+                .sorted()
+                .toList();
+    }
 }
