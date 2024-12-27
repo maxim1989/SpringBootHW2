@@ -86,4 +86,9 @@ public class StudentController {
     public ResponseEntity<Integer> getAvgAgeOfAllStudents() {
         return ResponseEntity.ok(studentService.getAvgAgeOfAllStudents());
     }
+
+    @GetMapping("formula-result")
+    public Long getFormulaResult() {
+        return studentService.getFormulaResult();
+    }
 }
