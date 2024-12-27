@@ -108,4 +108,10 @@ public class StudentService {
                 .sorted()
                 .toList();
     }
+
+    public Integer getAvgAgeOfAllStudents() {
+        List<Student> studentList = studentRepository.findAll();
+        Integer studentAmount = studentList.size();
+        return studentList.stream().reduce(0, (a, c) -> a + c.getAge(), Integer::sum) / studentAmount;
+    }
 }
