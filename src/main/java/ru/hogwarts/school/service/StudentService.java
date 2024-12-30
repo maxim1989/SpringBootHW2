@@ -125,8 +125,23 @@ public class StudentService {
                 .parallel()
                 .reduce(0, Integer::sum);
         long endTime = System.currentTimeMillis();
-        System.out.println(">>> result " + result);
         System.out.println(endTime - startTime);
         return endTime - startTime;
+    }
+
+    public void printParallel() {
+        List<Student> studentList = studentRepository.findAll();
+        System.out.println(studentList.get(0).getName());
+        System.out.println(studentList.get(1).getName());
+
+        new Thread(() -> {
+            System.out.println(studentList.get(2).getName());
+            System.out.println(studentList.get(3).getName());
+        }).start();
+
+        new Thread(() -> {
+            System.out.println(studentList.get(4).getName());
+            System.out.println(studentList.get(5).getName());
+        }).start();
     }
 }

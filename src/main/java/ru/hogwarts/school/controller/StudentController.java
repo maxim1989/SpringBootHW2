@@ -91,4 +91,9 @@ public class StudentController {
     public Long getFormulaResult() {
         return studentService.getFormulaResult();
     }
+
+    @GetMapping("print-parallel")
+    public void printParallel() {
+        studentService.printParallel();
+    }
 }
