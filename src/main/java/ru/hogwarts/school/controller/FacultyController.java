@@ -63,4 +63,9 @@ public class FacultyController {
                                                               @RequestParam() Integer offset) {
         return ResponseEntity.ok(facultyService.getFacultyPagination(limit, offset));
     }
+
+    @GetMapping("get-longest-name")
+    public String getLongestFacultyName() {
+        return facultyService.getLongestFacultyName();
+    }
 }

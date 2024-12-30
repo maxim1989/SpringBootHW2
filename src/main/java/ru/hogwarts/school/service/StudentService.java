@@ -16,6 +16,8 @@ import ru.hogwarts.school.repository.StudentsAvgAge;
 import ru.hogwarts.school.utils.MappingUtils;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class StudentService {
@@ -95,5 +97,36 @@ public class StudentService {
     public List<LastFiveStudents> getLastFiveStudents() {
         logger.info("StudentService getLastFiveStudents was invoked");
         return studentRepository.getLastFiveStudents();
+    }
+
+    public List<String> getStartWithAStudents() {
+        return studentRepository
+                .findAll()
+                .stream()
+                .filter(
+                        student -> student.getName().toUpperCase().startsWith("A")
+                )
+                .map(student -> student.getName().toUpperCase())
+                .sorted()
+                .toList();
+    }
+
+    public Integer getAvgAgeOfAllStudents() {
+        List<Student> studentList = studentRepository.findAll();
+        Integer studentAmount = studentList.size();
+        return studentList.stream().reduce(0, (a, c) -> a + c.getAge(), Integer::sum) / studentAmount;
+    }
+
+    public long getFormulaResult() {
+        long startTime = System.currentTimeMillis();
+        Integer result = Stream
+                .iterate(1, a -> a + 1)
+                .limit(1_000_000)
+                .parallel()
+                .reduce(0, Integer::sum);
+        long endTime = System.currentTimeMillis();
+        System.out.println(">>> result " + result);
+        System.out.println(endTime - startTime);
+        return endTime - startTime;
     }
 }

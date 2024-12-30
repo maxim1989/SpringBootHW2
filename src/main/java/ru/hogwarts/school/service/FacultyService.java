@@ -98,4 +98,18 @@ public class FacultyService {
 
         return facultyDtoList;
     }
+
+    public String getLongestFacultyName() {
+        return facultyRepository
+                .findAll()
+                .stream()
+                .map(Faculty::getName)
+                .reduce("", (a, c) -> {
+                    if (c.length() > a.length()) {
+                        a = c;
+                    }
+
+                    return a;
+                });
+    }
 }
