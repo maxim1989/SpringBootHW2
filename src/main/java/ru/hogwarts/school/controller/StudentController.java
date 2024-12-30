@@ -96,4 +96,9 @@ public class StudentController {
     public void printParallel() {
         studentService.printParallel();
     }
+
+    @GetMapping("print-synchronized")
+    public void printSynchronized() {
+        studentService.printSynchronized();
+    }
 }

@@ -144,4 +144,26 @@ public class StudentService {
             System.out.println(studentList.get(5).getName());
         }).start();
     }
+
+    public void printStudentName(Student student) {
+        synchronized (StudentService.class) {
+            System.out.println(student.getName());
+        }
+    }
+
+    public void printSynchronized() {
+        List<Student> studentList = studentRepository.findAll();
+        printStudentName(studentList.get(0));
+        printStudentName(studentList.get(1));
+
+        new Thread(() -> {
+            printStudentName(studentList.get(2));
+            printStudentName(studentList.get(3));
+        }).start();
+
+        new Thread(() -> {
+            printStudentName(studentList.get(4));
+            printStudentName(studentList.get(5));
+        }).start();
+    }
 }
