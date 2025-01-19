@@ -125,8 +125,45 @@ public class StudentService {
                 .parallel()
                 .reduce(0, Integer::sum);
         long endTime = System.currentTimeMillis();
-        System.out.println(">>> result " + result);
         System.out.println(endTime - startTime);
         return endTime - startTime;
+    }
+
+    public void printParallel() {
+        List<Student> studentList = studentRepository.findAll();
+        System.out.println(studentList.get(0).getName());
+        System.out.println(studentList.get(1).getName());
+
+        new Thread(() -> {
+            System.out.println(studentList.get(2).getName());
+            System.out.println(studentList.get(3).getName());
+        }).start();
+
+        new Thread(() -> {
+            System.out.println(studentList.get(4).getName());
+            System.out.println(studentList.get(5).getName());
+        }).start();
+    }
+
+    public void printStudentName(Student student) {
+        synchronized (StudentService.class) {
+            System.out.println(student.getName());
+        }
+    }
+
+    public void printSynchronized() {
+        List<Student> studentList = studentRepository.findAll();
+        printStudentName(studentList.get(0));
+        printStudentName(studentList.get(1));
+
+        new Thread(() -> {
+            printStudentName(studentList.get(2));
+            printStudentName(studentList.get(3));
+        }).start();
+
+        new Thread(() -> {
+            printStudentName(studentList.get(4));
+            printStudentName(studentList.get(5));
+        }).start();
     }
 }
